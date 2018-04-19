@@ -1,0 +1,7 @@
+{
+  "python.pythonPath": "/Users/admin/anaconda2/envs/python34/bin/python",
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.formatting.provider": "autopep8"
+}
