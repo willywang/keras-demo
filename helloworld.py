@@ -49,9 +49,10 @@ model.fit(
     X_train,
     Y_train,
     batch_size=2000,
-    epochs=100,
+    epochs=1,
     shuffle=True,
     verbose=1,
     validation_split=0.3)
 print('test set')
-model.evaluate(X_test, Y_test, batch_size=500, verbose=1)
+result = model.evaluate(X_test, Y_test, batch_size=500, verbose=1)
+print(result)
