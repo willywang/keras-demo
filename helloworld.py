@@ -5,21 +5,21 @@ from keras.datasets import mnist
 import numpy
 
 model = Sequential()
-model.add(Dense(128, input_dim=784))  # 输入层，28*28=784
-model.add(Activation('relu'))  # 激活函数
-model.add(Dropout(0.5))  # 采用50%的dropout
+model.add(Dense(500, input_dim=784))  # 输入层，28*28=784
+model.add(Activation('sigmoid'))  # 激活函数
+# model.add(Dropout(0.5))  # 采用50%的dropout
 
-for i in range(10):
-    model.add(Dense(128))
-    model.add(Activation('relu'))
-    model.add(Dropout(0.5))
+for i in range(6):
+    model.add(Dense(500))
+    model.add(Activation('sigmoid'))
+    # model.add(Dropout(0.5))
 
 model.add(Dense(10))  # 输出结果是10个类别，所以维度是10
 model.add(Activation('softmax'))  # 最后一层用softmax
 
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)  # 设定学习率（lr）等参数
 model.compile(
-    loss='categorical_crossentropy', optimizer=sgd,
+    loss='categorical_crossentropy', optimizer='adam',
     metrics=['accuracy'])  # 使用交叉熵作为loss函数
 
 (X_train,
@@ -48,10 +48,10 @@ Y_test = (numpy.arange(10) == y_test[:, None]).astype(int)
 model.fit(
     X_train,
     Y_train,
-    batch_size=50,
+    batch_size=2000,
     epochs=100,
     shuffle=True,
     verbose=1,
     validation_split=0.3)
 print('test set')
-model.evaluate(X_test, Y_test, batch_size=200, verbose=1)
+model.evaluate(X_test, Y_test, batch_size=500, verbose=1)
